@@ -1,0 +1,62 @@
+{
+  "name": "prut-viewer",
+  "version": "0.1.0",
+  "description": "Extensible browser document viewer with authorized transports and child viewer management",
+  "main": "./script.js",
+  "module": "./index.mjs",
+  "browser": "./script.js",
+  "style": "./style.css",
+  "files": [
+    "script.js",
+    "style.css",
+    "index.mjs",
+    "manifest.schema.json",
+    "README.md",
+    "LICENSE",
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./script.js",
+      "default": "./script.js"
+    },
+    "./style.css": "./style.css",
+    "./manifest.schema.json": "./manifest.schema.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node --check script.js && node scripts/validate.mjs",
+    "dev": "node scripts/serve.mjs",
+    "lint": "node scripts/validate.mjs",
+    "test": "npm run check && npm run test:browser",
+    "test:browser": "playwright test",
+    "typecheck": "node scripts/validate.mjs",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teraxis/PrutViewer.git"
+  },
+  "homepage": "https://github.com/teraxis/PrutViewer#readme",
+  "bugs": {
+    "url": "https://github.com/teraxis/PrutViewer/issues"
+  },
+  "keywords": [
+    "viewer",
+    "pdf",
+    "documents",
+    "s3",
+    "onlyoffice"
+  ],
+  "author": "teraxis",
+  "license": "MIT",
+  "sideEffects": true,
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "esbuild": "^0.25.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

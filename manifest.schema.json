@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:prut-viewer:manifest:1",
+  "title": "PrutViewer manifest",
+  "type": "object",
+  "required": ["documents"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "prut-viewer/1"
+    },
+    "id": {
+      "type": ["string", "number"]
+    },
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/document" }
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "auth": {
+          "type": "string",
+          "enum": ["session", "bearer", "signed", "none"]
+        },
+        "signed": { "type": "boolean" },
+        "credentials": {
+          "type": "string",
+          "enum": ["omit", "same-origin", "include"]
+        },
+        "cache": { "type": "string" },
+        "mode": { "type": "string" },
+        "redirect": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "source": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "required": ["url"],
+          "properties": {
+            "url": { "type": "string", "minLength": 1 },
+            "request": { "$ref": "#/$defs/request" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "document": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": ["string", "number"] },
+        "title": { "type": "string" },
+        "name": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["pdf", "image", "text", "video", "audio", "office", "download"]
+        },
+        "mime": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "ext": { "type": "string" },
+        "extension": { "type": "string" },
+        "sources": {
+          "type": "object",
+          "properties": {
+            "view": { "$ref": "#/$defs/source" },
+            "download": { "$ref": "#/$defs/source" },
+            "config": { "$ref": "#/$defs/source" },
+            "preview": { "$ref": "#/$defs/source" }
+          },
+          "additionalProperties": true
+        },
+        "fileUrl": { "type": "string" },
+        "downloadUrl": { "type": "string" },
+        "configUrl": { "type": "string" },
+        "pdfPreviewUrl": { "type": "string" },
+        "capabilities": { "type": "object" },
+        "metadata": { "type": "object" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PrutViewer browser smoke</title>
+</head>
+<body data-result="pending">
+    <div id="viewer"></div>
+    <div id="documents"></div>
+    <div id="child"></div>
+    <pre id="result"></pre>
+    <script src="../script.js"></script>
+    <script>
+        (async function () {
+            var output = document.querySelector('#result');
+            try {
+                var viewer = new PrutViewer('#viewer', {
+                    manifest: {
+                        schema: 'prut-viewer/1',
+                        documents: []
+                    }
+                });
+                await viewer.init();
+
+                var transport = new PrutViewerTransport({
+                    authorization: function () { return 'test-token'; }
+                });
+                var signedUrl = 'https://s3.example.test/object.pdf?X-Amz-Signature=abc%2F123';
+                var signed = await transport.resolve(signedUrl, {
+                    purpose: 'view',
+                    document: {
+                        sources: {
+                            view: {
+                                url: signedUrl,
+                                request: { auth: 'signed', credentials: 'omit' }
+                            }
+                        }
+                    }
+                });
+                var bearer = await transport.resolve('https://api.example.test/document', {
+                    purpose: 'view',
+                    document: {}
+                });
+
+                if (viewer.getState().status !== 'empty') throw new Error('Empty manifest state failed');
+                if (signed.url !== signedUrl) throw new Error('Signed URL was modified');
+                if (signed.init.headers.Authorization) throw new Error('Authorization leaked into signed URL');
+                if (bearer.init.headers.Authorization !== 'Bearer test-token') throw new Error('Bearer header failed');
+
+                var lifecycle = [];
+                function MockRenderer(context) {
+                    this.context = context;
+                }
+                MockRenderer.prototype.render = function () {
+                    var element = document.createElement('div');
+                    element.dataset.viewerRole = 'mock';
+                    this.context.slot.appendChild(element);
+                    lifecycle.push('render');
+                };
+                MockRenderer.prototype.destroy = function () {
+                    lifecycle.push('renderer-destroy');
+                };
+
+                var documentViewer = new PrutViewer('#documents', {
+                    manifest: {
+                        schema: 'prut-viewer/1',
+                        documents: [{ id: 'mock-1', type: 'mock', title: 'Mock' }]
+                    },
+                    renderers: { mock: MockRenderer },
+                    plugins: [{
+                        afterManifest: function () { lifecycle.push('manifest'); },
+                        afterRender: function () { lifecycle.push('after-render'); },
+                        destroy: function () { lifecycle.push('plugin-destroy'); }
+                    }]
+                });
+                await documentViewer.init();
+                await documentViewer.loadDocument(0);
+                if (!document.querySelector('[data-viewer-role="mock"]')) throw new Error('Custom renderer failed');
+                if (documentViewer.container.querySelector('[class]')) throw new Error('PrutViewer emitted a CSS class');
+
+                var child = documentViewer.createChild('preview', '#child', {
+                    manifest: { schema: 'prut-viewer/1', documents: [] }
+                });
+                await child.init();
+                await documentViewer.destroyChild('preview');
+                await documentViewer.destroy();
+                if (lifecycle.join(',') !== 'manifest,render,after-render,renderer-destroy,plugin-destroy') {
+                    throw new Error('Lifecycle failed: ' + lifecycle.join(','));
+                }
+
+                document.body.dataset.result = 'ok';
+                output.textContent = JSON.stringify({
+                    status: viewer.getState().status,
+                    signedUrlPreserved: true,
+                    bearerHeader: true,
+                    classlessDomContract: true,
+                    rendererPluginLifecycle: true,
+                    childLifecycle: true
+                });
+            } catch (error) {
+                document.body.dataset.result = 'error';
+                output.textContent = error && error.stack ? error.stack : String(error);
+            }
+        }());
+    </script>
+</body>
+</html>
