@@ -5,6 +5,9 @@
     var status = document.querySelector('[data-demo-role="status"]');
     var pdfJsBase = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174';
     var localFileMode = window.location.protocol === 'file:';
+    var standalonePreviewMode = window.prutViewerDemoStandalone === true;
+    var localDataMode = localFileMode || standalonePreviewMode;
+    var rawPreviewBase = 'https://raw.githubusercontent.com/teraxis/PrutViewer/main/';
     var localObjectUrls = [];
 
     if (!container || typeof PrutViewer !== 'function') {
@@ -15,6 +18,9 @@
     function sourceUrl(documentItem) {
         var source = documentItem.sources && documentItem.sources.view;
         var url = typeof source === 'string' ? source : source && source.url;
+        if (standalonePreviewMode && url && !/^[a-z][a-z\d+.-]*:/i.test(url)) {
+            return new URL(url.replace(/^\.\//, ''), rawPreviewBase).href;
+        }
         return new URL(url, document.baseURI).href;
     }
 
@@ -107,15 +113,15 @@
         }
     };
 
-    if (localFileMode) {
+    if (localDataMode) {
         if (!Array.isArray(window.prutViewerDemoFiles)
             || !window.prutViewerDemoPdfData
             || typeof window.prutViewerDemoPdfData !== 'object') {
             if (status) status.textContent = 'The local demonstration fixtures could not be loaded.';
             return;
         }
-        // file:// cannot fetch adjacent PDFs. The representative PDF is embedded
-        // as data and exposed as a blob URL to the normal PDF.js renderer.
+        // Direct file and standalone preview modes cannot rely on adjacent PDF fetches.
+        // PDF fixtures are embedded as data and exposed as blob URLs to PDF.js.
         options.manifest = {
             schema: 'prut-viewer/1',
             id: 'prut-viewer-local-demo',
@@ -134,7 +140,7 @@
     viewer.on('state:change', function (event) {
         if (status) {
             status.textContent = 'Viewer state: ' + event.state
-                + (localFileMode ? ' (local file mode)' : ' (HTTP mode)');
+                + (localFileMode ? ' (local file mode)' : (standalonePreviewMode ? ' (standalone preview mode)' : ' (HTTP mode)'));
         }
     });
     viewer.on('document:error', function () {

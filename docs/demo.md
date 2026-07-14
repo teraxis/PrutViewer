@@ -31,10 +31,10 @@ The demo root uses `data-viewer-demo`, `tabindex="0"`, and a bounded height. Its
 
 The GitHub repository file URL (`https://github.com/teraxis/PrutViewer/blob/main/demo.html`) displays the source file inside GitHub. It does not execute the demo as an HTML application.
 
-For an immediate browser-run preview without repository settings, use:
+For an immediate browser-run preview without repository settings, use the standalone preview entry:
 
 ```text
-https://htmlpreview.github.io/?https://github.com/teraxis/PrutViewer/blob/main/demo.html
+https://htmlpreview.github.io/?https://github.com/teraxis/PrutViewer/blob/main/demo.preview.html
 ```
 
 For first-party GitHub hosting, enable GitHub Pages for the repository, choose GitHub Actions as the build source, then run the manual `Pages` workflow. After deployment, the first-party URL is:
@@ -42,6 +42,8 @@ For first-party GitHub hosting, enable GitHub Pages for the repository, choose G
 ```text
 https://teraxis.github.io/PrutViewer/demo.html
 ```
+
+`demo.preview.html` exists because generic GitHub HTML preview services load linked CSS and JavaScript through `raw.githubusercontent.com`, where those files are served as `text/plain` with `X-Content-Type-Options: nosniff`. The standalone preview loads those assets as text, injects CSS, evaluates the scripts in order, uses embedded PDF fixtures, and rewrites non-PDF demo media to GitHub raw URLs.
 
 The Pages workflow publishes the static demo files, generated local PDF catalog, generated PDF data, sample PDFs, and demonstration video from `main`.
 

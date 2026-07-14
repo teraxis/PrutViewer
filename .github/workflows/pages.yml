@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p _site/docs/images _site/tests/pdf
-          cp demo.html demo.css demo.js demo-files.js demo-pdf-data.js demo-manifest.json script.js style.css LICENSE _site/
+          cp demo.html demo.preview.html demo.css demo.js demo-files.js demo-pdf-data.js demo-manifest.json script.js style.css LICENSE _site/
           cp docs/images/F74i7CSqVV.mp4 _site/docs/images/
           cp tests/pdf/* _site/tests/pdf/
 
