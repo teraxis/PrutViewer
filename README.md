@@ -4,7 +4,15 @@ PrutViewer is a framework-independent browser document viewer with pluggable ren
 
 It provides a classless DOM contract based on `data-viewer-*` attributes and supports session-protected application endpoints, bearer authorization, short-lived S3-compatible signed URLs, and custom transport resolvers.
 
-[Watch the PrutViewer demonstration video](docs/images/F74i7CSqVV.mp4) (43.9 seconds, H.264 MP4, no audio).
+## Live demo
+
+[Open the PrutViewer browser demo](https://teraxis.github.io/PrutViewer/demo.html).
+
+<video controls muted playsinline width="100%" src="https://raw.githubusercontent.com/teraxis/PrutViewer/main/docs/images/F74i7CSqVV.mp4">
+  <a href="https://github.com/teraxis/PrutViewer/blob/main/docs/images/F74i7CSqVV.mp4">Watch the PrutViewer demonstration video</a>
+</video>
+
+The demo video is 43.9 seconds, H.264 MP4, no audio.
 
 ## Dependencies by file type
 
@@ -81,9 +89,9 @@ For a short-lived S3-compatible signed URL, mark the request as signed. PrutView
 
 See [the architecture guide](docs/architecture.md) and [API reference](docs/api.md) for the manifest, transport, renderer, plugin, and child-viewer contracts.
 
-## Runnable demonstrations
+## Local demonstrations
 
-- [`demo.html`](demo.html) can be opened directly from disk or served over HTTP. Direct `file://` mode passes all sample PDFs to PDF.js through generated `blob:` URLs; HTTP mode loads the complete [`demo-manifest.json`](demo-manifest.json). Both modes use a bounded, keyboard-focusable viewport with internal scrolling.
+- [`demo.html`](demo.html) can be opened directly from disk, served over HTTP, or viewed through the GitHub Pages deployment above. Direct `file://` mode passes all sample PDFs to PDF.js through generated `blob:` URLs; HTTP mode loads the complete [`demo-manifest.json`](demo-manifest.json). Both modes use a bounded, keyboard-focusable viewport with internal scrolling.
 - [`demo.php`](demo.php) discovers the files in `tests/pdf` and `docs/images`, creates the manifest endpoint, and streams authorized file responses with HTTP Range support.
 
 For a zero-setup preview, double-click `demo.html`. To exercise the real manifest, transport, PDF.js, and streaming path, serve the repository over HTTP:

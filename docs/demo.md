@@ -27,6 +27,18 @@ The generated Base64 fixture duplicates the PDF bytes and is intentionally limit
 
 The demo root uses `data-viewer-demo`, `tabindex="0"`, and a bounded height. Its own vertical scrollbar contains the complete document sequence, so the surrounding product page does not grow to the combined height of every PDF page. Document headers stay visible while their document is being scrolled. Hosts can choose another height or remove the demo-specific viewport styles without changing PrutViewer's core DOM contract.
 
+## GitHub Pages
+
+The GitHub repository file URL (`https://github.com/teraxis/PrutViewer/blob/main/demo.html`) displays the source file inside GitHub. It does not execute the demo as an HTML application.
+
+Use the GitHub Pages URL for a browser-run demo:
+
+```text
+https://teraxis.github.io/PrutViewer/demo.html
+```
+
+The Pages workflow publishes the static demo files, generated local PDF catalog, generated PDF data, sample PDFs, and demonstration video from `main`.
+
 ### Full HTTP demonstration
 
 Start any static HTTP server in the project root. For example:
