@@ -6,7 +6,7 @@ It provides a classless DOM contract based on `data-viewer-*` attributes and sup
 
 ## Live demo
 
-[Open the PrutViewer browser demo](https://teraxis.github.io/PrutViewer/demo.html).
+[Open the PrutViewer browser demo](https://htmlpreview.github.io/?https://github.com/teraxis/PrutViewer/blob/main/demo.html).
 
 <video controls muted playsinline width="100%" src="https://raw.githubusercontent.com/teraxis/PrutViewer/main/docs/images/F74i7CSqVV.mp4">
   <a href="https://github.com/teraxis/PrutViewer/blob/main/docs/images/F74i7CSqVV.mp4">Watch the PrutViewer demonstration video</a>
@@ -91,7 +91,7 @@ See [the architecture guide](docs/architecture.md) and [API reference](docs/api.
 
 ## Local demonstrations
 
-- [`demo.html`](demo.html) can be opened directly from disk, served over HTTP, or viewed through the GitHub Pages deployment above. Direct `file://` mode passes all sample PDFs to PDF.js through generated `blob:` URLs; HTTP mode loads the complete [`demo-manifest.json`](demo-manifest.json). Both modes use a bounded, keyboard-focusable viewport with internal scrolling.
+- [`demo.html`](demo.html) can be opened directly from disk, served over HTTP, or viewed through the browser preview link above. Direct `file://` mode passes all sample PDFs to PDF.js through generated `blob:` URLs; HTTP mode loads the complete [`demo-manifest.json`](demo-manifest.json). Both modes use a bounded, keyboard-focusable viewport with internal scrolling.
 - [`demo.php`](demo.php) discovers the files in `tests/pdf` and `docs/images`, creates the manifest endpoint, and streams authorized file responses with HTTP Range support.
 
 For a zero-setup preview, double-click `demo.html`. To exercise the real manifest, transport, PDF.js, and streaming path, serve the repository over HTTP:
@@ -100,7 +100,7 @@ For a zero-setup preview, double-click `demo.html`. To exercise the real manifes
 php -S 127.0.0.1:8080
 ```
 
-Then open `http://127.0.0.1:8080/demo.html` or `http://127.0.0.1:8080/demo.php`. See [the demo guide](docs/demo.md) for the `file://` limitations, local PDF.js hosting, and PHP authorization notes.
+Then open `http://127.0.0.1:8080/demo.html` or `http://127.0.0.1:8080/demo.php`. GitHub Pages can also host `demo.html` after Pages is enabled for the repository and the manual Pages workflow is run. See [the demo guide](docs/demo.md) for the `file://` limitations, browser preview, local PDF.js hosting, and PHP authorization notes.
 
 The sample PDFs retain the rights stated by their publishers. See [`tests/pdf/manifest.csv`](tests/pdf/manifest.csv) before copying or redistributing them.
 
