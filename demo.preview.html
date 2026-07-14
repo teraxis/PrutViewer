@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PrutViewer standalone preview</title>
+</head>
+<body>
+    <main data-demo-role="page">
+        <header data-demo-role="header">
+            <p data-demo-role="eyebrow">Framework-independent document viewer</p>
+            <h1>PrutViewer standalone preview</h1>
+            <p>This page is built for GitHub HTML preview services. It loads repository assets as text and runs the embedded PDF fixture catalog.</p>
+            <p data-demo-role="status" role="status">Initializing viewer...</p>
+        </header>
+        <section aria-label="Sample documents">
+            <div data-viewer-demo tabindex="0" aria-label="Scrollable document viewer"></div>
+        </section>
+    </main>
+    <script>
+    (function () {
+        'use strict';
+
+        var rawBase = 'https://raw.githubusercontent.com/teraxis/PrutViewer/main/';
+        var status = document.querySelector('[data-demo-role="status"]');
+        var styles = ['style.css', 'demo.css'];
+        var scripts = ['script.js', 'demo-files.js', 'demo-pdf-data.js', 'demo.js'];
+
+        window.prutViewerDemoStandalone = true;
+
+        function report(message) {
+            if (status) status.textContent = message;
+        }
+
+        function fetchText(path) {
+            return fetch(rawBase + path, { credentials: 'omit' }).then(function (response) {
+                if (!response.ok) throw new Error('Could not load ' + path + ': HTTP ' + response.status);
+                return response.text();
+            });
+        }
+
+        function injectStyle(path) {
+            return fetchText(path).then(function (text) {
+                var style = document.createElement('style');
+                style.dataset.viewerPreviewAsset = path;
+                style.textContent = text;
+                document.head.appendChild(style);
+            });
+        }
+
+        function runScript(path) {
+            return fetchText(path).then(function (text) {
+                (0, eval)(text + '\n//# sourceURL=' + rawBase + path);
+            });
+        }
+
+        Promise.all(styles.map(injectStyle))
+            .then(function () {
+                return scripts.reduce(function (chain, path) {
+                    return chain.then(function () { return runScript(path); });
+                }, Promise.resolve());
+            })
+            .catch(function (error) {
+                report(error && error.message ? error.message : String(error));
+                throw error;
+            });
+    }());
+    </script>
+</body>
+</html>
