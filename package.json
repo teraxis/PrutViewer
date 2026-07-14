@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
+    "build:demo-data": "node scripts/build-demo-data.mjs",
     "check": "node --check script.js && node scripts/validate.mjs",
     "dev": "node scripts/serve.mjs",
     "lint": "node scripts/validate.mjs",

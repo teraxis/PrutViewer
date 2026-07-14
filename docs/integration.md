@@ -55,3 +55,7 @@ The optional theme targets `data-viewer-role` and other `data-viewer-*` attribut
 ## Content security
 
 Treat manifests as trusted application output. Restrict allowed origins and protocols, never expose storage secrets, and use CSP/SRI configuration for third-party renderer scripts. Streaming endpoints should return correct content type and disposition, `X-Content-Type-Options: nosniff`, private caching rules, and Range support for large media.
+
+## Runnable examples
+
+See [the demonstration guide](demo.md) for a static manifest example, a framework-free PHP manifest/file gateway, the sample video, and local PDF.js hosting instructions.

@@ -4,6 +4,22 @@ PrutViewer is a framework-independent browser document viewer with pluggable ren
 
 It provides a classless DOM contract based on `data-viewer-*` attributes and supports session-protected application endpoints, bearer authorization, short-lived S3-compatible signed URLs, and custom transport resolvers.
 
+[Watch the PrutViewer demonstration video](docs/images/F74i7CSqVV.mp4) (43.9 seconds, H.264 MP4, no audio).
+
+## Dependencies by file type
+
+| File type | Built-in renderer | Runtime dependency | Server requirements |
+| --- | --- | --- | --- |
+| PDF | `pdf` | A mutually compatible PDF.js `core`, `worker`, `viewer`, and `viewerCss` set. The demo uses PDF.js 3.11.174. | Correct PDF MIME type; HTTP Range support is recommended for large files. |
+| Images | `image` | Browser-native image support. | A browser-supported format and a permitted same-origin, CORS, or signed URL. |
+| Video | `video` | Browser-native HTML video support. | A browser-supported container/codec; HTTP Range support is strongly recommended. |
+| Audio | `audio` | Browser-native HTML audio support. | A browser-supported container/codec; HTTP Range support is strongly recommended. |
+| Plain text | `text` | The browser Fetch API. | Text must be fetchable under the configured credentials and CORS policy. |
+| Office documents | `office` | ONLYOFFICE Document Server JavaScript API and a server-generated editor configuration. | Publicly reachable or authorized document/callback endpoints required by ONLYOFFICE. |
+| Other files | `download` | None. | A view or download URL; the browser downloads or opens the file externally. |
+
+PrutViewer itself has no Bootstrap, jQuery, React, Vue, Angular, Pentry, or site-template dependency. Rendering requires a modern browser DOM. Node.js is supported as a package and bundling environment, not as a headless rendering engine.
+
 ## Install
 
 ### Browser
@@ -64,6 +80,21 @@ For a short-lived S3-compatible signed URL, mark the request as signed. PrutView
 ```
 
 See [the architecture guide](docs/architecture.md) and [API reference](docs/api.md) for the manifest, transport, renderer, plugin, and child-viewer contracts.
+
+## Runnable demonstrations
+
+- [`demo.html`](demo.html) can be opened directly from disk or served over HTTP. Direct `file://` mode passes all sample PDFs to PDF.js through generated `blob:` URLs; HTTP mode loads the complete [`demo-manifest.json`](demo-manifest.json). Both modes use a bounded, keyboard-focusable viewport with internal scrolling.
+- [`demo.php`](demo.php) discovers the files in `tests/pdf` and `docs/images`, creates the manifest endpoint, and streams authorized file responses with HTTP Range support.
+
+For a zero-setup preview, double-click `demo.html`. To exercise the real manifest, transport, PDF.js, and streaming path, serve the repository over HTTP:
+
+```bash
+php -S 127.0.0.1:8080
+```
+
+Then open `http://127.0.0.1:8080/demo.html` or `http://127.0.0.1:8080/demo.php`. See [the demo guide](docs/demo.md) for the `file://` limitations, local PDF.js hosting, and PHP authorization notes.
+
+The sample PDFs retain the rights stated by their publishers. See [`tests/pdf/manifest.csv`](tests/pdf/manifest.csv) before copying or redistributing them.
 
 ## Development
 
