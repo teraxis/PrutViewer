@@ -1,0 +1,209 @@
+{
+  "schema": "prut-viewer/1",
+  "id": "prut-viewer-demo",
+  "metadata": {
+    "title": "PrutViewer sample documents",
+    "rightsNotice": "Sample files retain the rights stated by their publishers. Review each source before redistribution."
+  },
+  "documents": [
+    {
+      "id": "who-policy-brief-template",
+      "title": "WHO — Policy brief template",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/who_policy_brief_template.pdf",
+        "download": "./tests/pdf/who_policy_brief_template.pdf"
+      },
+      "metadata": {
+        "organization": "WHO",
+        "pages": 14,
+        "sizeBytes": 247694,
+        "sourceUrl": "https://applications.emro.who.int/docs/9789292741907-eng.pdf",
+        "rightsNote": "WHO terms / publication-specific rights"
+      }
+    },
+    {
+      "id": "oecd-policy-experimentation",
+      "title": "OECD — How to best use STI policy experimentation to support transitions",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/oecd_policy_experimentation.pdf",
+        "download": "./tests/pdf/oecd_policy_experimentation.pdf"
+      },
+      "metadata": {
+        "organization": "OECD",
+        "pages": 5,
+        "sizeBytes": 315918,
+        "sourceUrl": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/12/how-to-best-use-sti-policy-experimentation-to-support-transitions_99ddf48f/7b246309-en.pdf",
+        "rightsNote": "OECD terms / publication-specific rights"
+      }
+    },
+    {
+      "id": "oecd-social-entrepreneurship",
+      "title": "OECD — Policy brief on social entrepreneurship",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/oecd_social_entrepreneurship.pdf",
+        "download": "./tests/pdf/oecd_social_entrepreneurship.pdf"
+      },
+      "metadata": {
+        "organization": "OECD",
+        "pages": 22,
+        "sizeBytes": 1128652,
+        "sourceUrl": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2013/12/policy-brief-on-social-entrepreneurship_97cdc73f/13d53589-en.pdf",
+        "rightsNote": "OECD terms / publication-specific rights"
+      }
+    },
+    {
+      "id": "oecd-regional-social-economy",
+      "title": "OECD — Regional social economy strategies",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/oecd_regional_social_economy.pdf",
+        "download": "./tests/pdf/oecd_regional_social_economy.pdf"
+      },
+      "metadata": {
+        "organization": "OECD",
+        "pages": 9,
+        "sizeBytes": 792706,
+        "sourceUrl": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/12/regional-social-economy-strategies_558dc0a4/cef31b9c-en.pdf",
+        "rightsNote": "OECD terms / publication-specific rights"
+      }
+    },
+    {
+      "id": "oecd-algorithm-and-eve",
+      "title": "OECD — Algorithm and Eve",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/oecd_algorithm_and_eve.pdf",
+        "download": "./tests/pdf/oecd_algorithm_and_eve.pdf"
+      },
+      "metadata": {
+        "organization": "OECD",
+        "pages": 8,
+        "sizeBytes": 506975,
+        "sourceUrl": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/12/algorithm-and-eve_0e889c45/a1603510-en.pdf",
+        "rightsNote": "OECD terms / publication-specific rights"
+      }
+    },
+    {
+      "id": "un-beyond-gdp",
+      "title": "United Nations — Beyond GDP",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/un_beyond_gdp.pdf",
+        "download": "./tests/pdf/un_beyond_gdp.pdf"
+      },
+      "metadata": {
+        "organization": "United Nations",
+        "pages": 16,
+        "sizeBytes": 374012,
+        "sourceUrl": "https://indonesia.un.org/sites/default/files/2023-07/our-common-agenda-policy-brief-beyond-gross-domestic-product-en.pdf",
+        "rightsNote": "UN publication rights"
+      }
+    },
+    {
+      "id": "un-transforming-education",
+      "title": "United Nations — Transforming education",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/un_transforming_education.pdf",
+        "download": "./tests/pdf/un_transforming_education.pdf"
+      },
+      "metadata": {
+        "organization": "United Nations",
+        "pages": 20,
+        "sizeBytes": 556562,
+        "sourceUrl": "https://kuwait.un.org/sites/default/files/2024-10/brief%2010%20our-common-agenda-policy-brief-transforming-education-en_2.pdf",
+        "rightsNote": "UN publication rights"
+      }
+    },
+    {
+      "id": "unicef-child-protection-systems",
+      "title": "UNICEF — Child protection systems strengthening approach",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/unicef_child_protection_systems.pdf",
+        "download": "./tests/pdf/unicef_child_protection_systems.pdf"
+      },
+      "metadata": {
+        "organization": "UNICEF",
+        "pages": 16,
+        "sizeBytes": 2601888,
+        "sourceUrl": "https://www.unicef.org/media/110871/file/1.%20the%20unicef%20child%20protection%20systems%20strengthening%20approach.pdf",
+        "rightsNote": "UNICEF publication rights"
+      }
+    },
+    {
+      "id": "unicef-developmental-disabilities-summary",
+      "title": "UNICEF / WHO — Children with developmental disabilities: executive summary",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/unicef_developmental_disabilities_summary.pdf",
+        "download": "./tests/pdf/unicef_developmental_disabilities_summary.pdf"
+      },
+      "metadata": {
+        "organization": "UNICEF / WHO",
+        "pages": 24,
+        "sizeBytes": 736176,
+        "sourceUrl": "https://www.unicef.org/media/145021/file/Executive-Summary-Global-report-on-children-with-developmental-disabilities-2023.pdf",
+        "rightsNote": "CC BY-NC-SA 3.0 IGO stated in document"
+      }
+    },
+    {
+      "id": "unicef-girls-priorities",
+      "title": "UNICEF — Five game-changing priorities for adolescent girls",
+      "type": "pdf",
+      "mime": "application/pdf",
+      "ext": "pdf",
+      "sources": {
+        "view": "./tests/pdf/unicef_girls_priorities.pdf",
+        "download": "./tests/pdf/unicef_girls_priorities.pdf"
+      },
+      "metadata": {
+        "organization": "UNICEF",
+        "pages": 18,
+        "sizeBytes": 5683520,
+        "sourceUrl": "https://www.unicef.org/media/156956/file/en-report-five-game-changing-priorites-2024.pdf",
+        "rightsNote": "UNICEF publication rights"
+      }
+    },
+    {
+      "id": "prut-viewer-demonstration-video",
+      "title": "PrutViewer demonstration video",
+      "type": "video",
+      "mime": "video/mp4",
+      "ext": "mp4",
+      "sources": {
+        "view": "./docs/images/F74i7CSqVV.mp4",
+        "download": "./docs/images/F74i7CSqVV.mp4"
+      },
+      "metadata": {
+        "durationSeconds": 43.866667,
+        "width": 2560,
+        "height": 1346,
+        "videoCodec": "H.264 Constrained Baseline",
+        "audio": false,
+        "sizeBytes": 17490183
+      }
+    }
+  ]
+}

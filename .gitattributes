@@ -7,5 +7,7 @@
 *.yaml text eol=lf
 *.json text eol=lf
 *.toml text eol=lf
+*.pdf binary
+*.mp4 binary
 Dockerfile text eol=lf
 Makefile text eol=lf
