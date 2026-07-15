@@ -115,4 +115,4 @@ Source files are intentionally readable. Minified assets are release artifacts a
 
 ## License
 
-[MIT](LICENSE) © 2026 teraxis
+[MIT](LICENSE) © 2026 Bilyk Ihor
